@@ -209,6 +209,10 @@ void ESPADFSpeaker::player_task(void *params) {
   }
 }
 
+void ESPADFSpeaker::set_volume((uint8_t quality) {
+  audio_hal_set_volume(board_handle->audio_hal, vol);
+}
+
 void ESPADFSpeaker::stop() {
   if (this->state_ == speaker::STATE_STOPPED)
     return;

@@ -11,6 +11,8 @@ from .. import (
     final_validate_usable_board,
 )
 
+CONF_SPEAKER_VOLUME = "speaker_volume"
+
 AUTO_LOAD = ["esp_adf"]
 CONFLICTS_WITH = ["i2s_audio"]
 DEPENDENCIES = ["esp32"]
@@ -25,10 +27,16 @@ CONFIG_SCHEMA = cv.All(
         {
             cv.GenerateID(): cv.declare_id(ESPADFSpeaker),
             cv.GenerateID(CONF_ESP_ADF_ID): cv.use_id(ESPADF),
+            cv.Optional(CONF_SPEAKER_VOLUME, default=50): cv.int_range(min=0, max=100),
         }
     ).extend(cv.COMPONENT_SCHEMA),
     cv.only_with_esp_idf,
 )
+
+SETTERS = {
+    # pin assignment
+    CONF_SPEAKER_VOLUME: "set_speaker_volume"
+}
 
 FINAL_VALIDATE_SCHEMA = final_validate_usable_board("speaker")
 

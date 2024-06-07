@@ -24,6 +24,8 @@ class ESPADFSpeaker : public ESPADFPipeline, public speaker::Speaker, public Com
   void setup() override;
   void loop() override;
 
+  void set_volume(uint8_t quality) override;
+
   void start() override;
   void stop() override;
 
