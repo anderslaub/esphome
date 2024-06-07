@@ -34,7 +34,6 @@ CONFIG_SCHEMA = cv.All(
 )
 
 SETTERS = {
-    # pin assignment
     CONF_SPEAKER_VOLUME: "set_volume"
 }
 

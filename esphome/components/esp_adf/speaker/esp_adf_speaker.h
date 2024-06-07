@@ -24,12 +24,12 @@ class ESPADFSpeaker : public ESPADFPipeline, public speaker::Speaker, public Com
   void setup() override;
   void loop() override;
 
-  void set_volume(uint8_t quality) override;
-
   void start() override;
   void stop() override;
 
   size_t play(const uint8_t *data, size_t length) override;
+
+  void set_volume(uint8_t vol);
 
   bool has_buffered_data() const override;
 

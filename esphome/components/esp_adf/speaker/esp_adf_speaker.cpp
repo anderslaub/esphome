@@ -209,7 +209,7 @@ void ESPADFSpeaker::player_task(void *params) {
   }
 }
 
-void ESPADFSpeaker::set_volume((uint8_t quality) {
+void ESPADFSpeaker::set_volume((uint8_t vol) {
   audio_hal_set_volume(board_handle->audio_hal, vol);
 }
 
