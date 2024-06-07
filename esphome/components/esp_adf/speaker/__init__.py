@@ -11,7 +11,7 @@ from .. import (
     final_validate_usable_board,
 )
 
-CONF_SPEAKER_VOLUME = "speaker_volume"
+CONF_SPEAKER_VOLUME = "volume"
 
 AUTO_LOAD = ["esp_adf"]
 CONFLICTS_WITH = ["i2s_audio"]
@@ -35,7 +35,7 @@ CONFIG_SCHEMA = cv.All(
 
 SETTERS = {
     # pin assignment
-    CONF_SPEAKER_VOLUME: "set_speaker_volume"
+    CONF_SPEAKER_VOLUME: "set_volume"
 }
 
 FINAL_VALIDATE_SCHEMA = final_validate_usable_board("speaker")
@@ -45,5 +45,5 @@ async def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
     await cg.register_component(var, config)
     await cg.register_parented(var, config[CONF_ESP_ADF_ID])
-
     await speaker.register_speaker(var, config)
+    cg.add(var.set_volume(config[CONF_SPEAKER_VOLUME]))
